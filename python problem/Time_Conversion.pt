@@ -1,0 +1,32 @@
+def timeConversion(s):
+    # Write your code here
+    if(s[0:2]=='12' and s[-2:]=='AM'):
+        s=s.replace('12','00')
+        s=s.replace('AM','')
+        return s
+    elif(s[0:2]=='12' and s[-2:]=='PM'):
+        s = s.replace('PM', '')
+        return s
+    elif(s[-2:]=='PM'):
+        r=int(s[0:2])
+        r1=r+12
+        s=s.replace('PM','')
+        s=s.replace(str(r),str(r1))
+        if(int(s[0:2])<22):
+            return s[1:]
+        else:
+            return s
+    else:
+        s=s.replace('AM','')
+        return s
+    
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
